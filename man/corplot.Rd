@@ -16,7 +16,7 @@ corplot(
 )
 }
 \arguments{
-\item{X}{a matrix whose columns refer to parameters and whose rows to samples}
+\item{X}{a matrix or data.frame whose columns refer to parameters and whose rows to samples}
 
 \item{main}{the plot title (if desired)}
 

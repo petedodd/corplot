@@ -2,7 +2,7 @@
 ##'
 ##' The diagonal panels are histograms of each parameter representing estimates of marginal density. The lower half shows hexbinned plots of correlations between parameters (estimates of pairwise joint densities) together with a loess smoother to indicate trend. If \code{points=TRUE} the pair plots are not hexbinned and points are plotted with alpha proportional to weight.
 ##' @title corplot
-##' @param X a matrix whose columns refer to parameters and whose rows to samples
+##' @param X a matrix or data.frame whose columns refer to parameters and whose rows to samples
 ##' @param main the plot title (if desired)
 ##' @param labels a character vector of length \code{ncol(X)} to label parameters 
 ##' @param file a filename to save pdf or png output plot to (else plotted to default to device)
@@ -15,6 +15,8 @@
 ##' @examples
 ##' corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
 corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,loesslines=TRUE,...){
+  ## convert X if needed
+  if(is.data.frame(X)) X <- as.matrix(X)
   ## color for loess
   rcol <- rgb(1,0,0,alpha=1)
   if(!loesslines) rcol <- rgb(1,0,0,alpha=0)
