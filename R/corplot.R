@@ -6,12 +6,18 @@
 ##' @param main the plot title (if desired)
 ##' @param labels a character vector of length \code{ncol(X)} to label parameters 
 ##' @param file a filename to save pdf or png output plot to (else plotted to default to device)
+##' @param weights If points=TRUE scatters allow non-equal point weights. NOTE histograms are unweighted.
+##' @param points Logical (default=FALSE) whether to use points rather than hexplot scatters
+##' @param loesslines Logical (default=TRUE) whether to plot loess smoothers on hexplot scatters
 ##' @return None
 ##' @author Pete Dodd
 ##' @export
 ##' @examples
 ##' corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
-corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,...){
+corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,loesslines=TRUE,...){
+  ## color for loess
+  rcol <- rgb(1,0,0,alpha=1)
+  if(!loesslines) rcol <- rgb(1,0,0,alpha=0)
   if(!is.null(labels)){
     colnames(X) <- labels
     f <- 1/(length(labels))^.2
@@ -43,7 +49,7 @@ corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,...){
                           },
                           lower.panel = function(x, y, ...){
                             hexbin::panel.hexbinplot(x, y, ...)
-                            lattice::panel.loess(x, y, ..., col = 'red')
+                            lattice::panel.loess(x, y, ..., col = rcol)
                           },
                           upper.panel = function(x, y, ...){
                             pl <- lattice::current.panel.limits()

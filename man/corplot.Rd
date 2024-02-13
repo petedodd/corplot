@@ -11,6 +11,7 @@ corplot(
   file = "",
   weights = 1,
   points = FALSE,
+  loesslines = TRUE,
   ...
 )
 }
@@ -22,6 +23,12 @@ corplot(
 \item{labels}{a character vector of length \code{ncol(X)} to label parameters}
 
 \item{file}{a filename to save pdf or png output plot to (else plotted to default to device)}
+
+\item{weights}{If points=TRUE scatters allow non-equal point weights. NOTE histograms are unweighted.}
+
+\item{points}{Logical (default=FALSE) whether to use points rather than hexplot scatters}
+
+\item{loesslines}{Logical (default=TRUE) whether to plot loess smoothers on hexplot scatters}
 }
 \value{
 None
