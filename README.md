@@ -1,4 +1,5 @@
-# corplot
+# corplot <img src="man/figures/logo.png" align="right" height="139" alt="" />
+
 Fast correlation/corner/pairs plots for lots of data
 
 
