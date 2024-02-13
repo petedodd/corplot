@@ -1,0 +1,14 @@
+Package: corplot
+Title: Fast pairs or corner plots for lots of data
+Version: 0.0.0.9000
+Authors@R: 
+    person("Pete", "Dodd", , "p.j.dodd@sheffield.ac.uk", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5825-9347"))
+Description: This is a simple wrapper to a customized splom from the lattice package
+License: CC BY 4.0
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports: 
+    hexbin,
+    lattice
