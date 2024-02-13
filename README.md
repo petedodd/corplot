@@ -14,6 +14,11 @@ This can be installed using:
 devtools::install_github('petedodd/corplot')
 ```
 
-## Useage
+## Usage ##
 
-TODO
+Once installed, it provides once simple function:
+
+```R
+library(corplot)
+corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
+```
