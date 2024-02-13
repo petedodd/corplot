@@ -8,6 +8,7 @@
 ##' @param file a filename to save pdf or png output plot to (else plotted to default to device)
 ##' @return None
 ##' @author Pete Dodd
+##' @export
 ##' @examples
 ##' corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
 corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,...){
