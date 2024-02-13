@@ -1,10 +1,10 @@
-##' A hexbinned pairs and density plot to examine correlations. 
+##' A hexbinned pairs and density plot to examine correlations.
 ##'
 ##' The diagonal panels are histograms of each parameter representing estimates of marginal density. The lower half shows hexbinned plots of correlations between parameters (estimates of pairwise joint densities) together with a loess smoother to indicate trend. If \code{points=TRUE} the pair plots are not hexbinned and points are plotted with alpha proportional to weight.
 ##' @title corplot
 ##' @param X a matrix or data.frame whose columns refer to parameters and whose rows to samples
 ##' @param main the plot title (if desired)
-##' @param labels a character vector of length \code{ncol(X)} to label parameters 
+##' @param labels a character vector of length \code{ncol(X)} to label parameters
 ##' @param file a filename to save pdf or png output plot to (else plotted to default to device)
 ##' @param loesslines Logical (default=TRUE) whether to plot loess smoothers on hexplot scatters
 ##' @param points Logical (default=FALSE) whether to use points rather than hexplot scatters
@@ -15,6 +15,10 @@
 ##' @examples
 ##' corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
 corplot <- function(X,main='',labels=NULL,file='',loesslines=TRUE,points=FALSE,weights=1,...){
+  ## weights check
+  if((length(weights)!=1) & (length(weights)!=nrow(X))){
+    stop("Weights must be either length 1 or length nrow(X)")
+  }
   ## convert X if needed
   if(is.data.frame(X)) X <- as.matrix(X)
   ## color for loess
@@ -66,7 +70,9 @@ corplot <- function(X,main='',labels=NULL,file='',loesslines=TRUE,points=FALSE,w
                           colramp=hexbin::BTC,
                           diag.panel = function(x, ...){
                             yrng <- lattice::current.panel.limits()$ylim
-                            h <- plotrix::weighted.hist(x,w=weights, plot = FALSE,breaks=30)
+                            h <- hist(x,plot = FALSE,breaks=30)
+                            if(length(weights)>1)
+                              h <- plotrix::weighted.hist(x,w=weights, plot = FALSE,breaks=30)
                             breaks <- h$breaks
                             nB <- length(breaks)
                             y <- h$density
