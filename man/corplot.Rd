@@ -4,7 +4,15 @@
 \alias{corplot}
 \title{corplot}
 \usage{
-corplot(X, main = "", labels = NULL, file = "", weights = 1, points = FALSE)
+corplot(
+  X,
+  main = "",
+  labels = NULL,
+  file = "",
+  weights = 1,
+  points = FALSE,
+  ...
+)
 }
 \arguments{
 \item{X}{a matrix whose columns refer to parameters and whose rows to samples}
@@ -13,7 +21,7 @@ corplot(X, main = "", labels = NULL, file = "", weights = 1, points = FALSE)
 
 \item{labels}{a character vector of length \code{ncol(X)} to label parameters}
 
-\item{file}{a filename to save pdf output plot to (else plotted to default to device)}
+\item{file}{a filename to save pdf or png output plot to (else plotted to default to device)}
 }
 \value{
 None

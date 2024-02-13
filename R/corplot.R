@@ -5,17 +5,26 @@
 ##' @param X a matrix whose columns refer to parameters and whose rows to samples
 ##' @param main the plot title (if desired)
 ##' @param labels a character vector of length \code{ncol(X)} to label parameters 
-##' @param file a filename to save pdf output plot to (else plotted to default to device)
+##' @param file a filename to save pdf or png output plot to (else plotted to default to device)
 ##' @return None
 ##' @author Pete Dodd
 ##' @examples
 ##' corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
-corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE){
+corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,...){
   if(!is.null(labels)){
     colnames(X) <- labels
     f <- 1/(length(labels))^.2
   } else {f <- 1}
-  if(file!='') pdf(file)
+  if(file!=''){
+    file.end <- substr(file,start=nchar(file)-2,stop=nchar(file))
+    if(file.end=='pdf'){
+      pdf(file,...)
+    } else if (file.end=='png'){
+      png(file,...)
+    } else {
+      stop('Filename must end with either .png or .pdf according to desired export format!')
+    }
+  }
   if(!points){                          #hexbin version
     myp <- lattice::splom(X,main=main,xlab='',
                           panel=hexbin::panel.hexbinplot,
