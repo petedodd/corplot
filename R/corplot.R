@@ -6,15 +6,15 @@
 ##' @param main the plot title (if desired)
 ##' @param labels a character vector of length \code{ncol(X)} to label parameters 
 ##' @param file a filename to save pdf or png output plot to (else plotted to default to device)
-##' @param weights If points=TRUE scatters allow non-equal point weights. NOTE histograms are unweighted.
-##' @param points Logical (default=FALSE) whether to use points rather than hexplot scatters
 ##' @param loesslines Logical (default=TRUE) whether to plot loess smoothers on hexplot scatters
+##' @param points Logical (default=FALSE) whether to use points rather than hexplot scatters
+##' @param weights If points=TRUE scatters allow non-equal point weights.
 ##' @return None
 ##' @author Pete Dodd
 ##' @export
 ##' @examples
 ##' corplot(matrix(rnorm(3e4),ncol=3),labels=c('x','y','z'),main='3D isotropic Gaussian')
-corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,loesslines=TRUE,...){
+corplot <- function(X,main='',labels=NULL,file='',loesslines=TRUE,points=FALSE,weights=1,...){
   ## convert X if needed
   if(is.data.frame(X)) X <- as.matrix(X)
   ## color for loess
@@ -66,7 +66,7 @@ corplot <- function(X,main='',labels=NULL,file='',weights=1,points=FALSE,loessli
                           colramp=hexbin::BTC,
                           diag.panel = function(x, ...){
                             yrng <- lattice::current.panel.limits()$ylim
-                            h <- hist(x, plot = FALSE,breaks=30)
+                            h <- plotrix::weighted.hist(x,w=weights, plot = FALSE,breaks=30)
                             breaks <- h$breaks
                             nB <- length(breaks)
                             y <- h$density

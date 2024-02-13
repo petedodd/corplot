@@ -9,9 +9,9 @@ corplot(
   main = "",
   labels = NULL,
   file = "",
-  weights = 1,
-  points = FALSE,
   loesslines = TRUE,
+  points = FALSE,
+  weights = 1,
   ...
 )
 }
@@ -24,11 +24,11 @@ corplot(
 
 \item{file}{a filename to save pdf or png output plot to (else plotted to default to device)}
 
-\item{weights}{If points=TRUE scatters allow non-equal point weights. NOTE histograms are unweighted.}
+\item{loesslines}{Logical (default=TRUE) whether to plot loess smoothers on hexplot scatters}
 
 \item{points}{Logical (default=FALSE) whether to use points rather than hexplot scatters}
 
-\item{loesslines}{Logical (default=TRUE) whether to plot loess smoothers on hexplot scatters}
+\item{weights}{If points=TRUE scatters allow non-equal point weights.}
 }
 \value{
 None
