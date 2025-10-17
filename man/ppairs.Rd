@@ -4,12 +4,15 @@
 \alias{ppairs}
 \title{ppairs}
 \usage{
-ppairs(D, alph = 0.5)
+ppairs(D, alph = 0.5, rotate_parms = "xy")
 }
 \arguments{
 \item{D}{data.frame or similar}
 
 \item{alph}{transparency}
+
+\item{rotate_parms}{Rotate parameter names: "xy" = both (default);
+"x" = x-axis only; "y" = y-axis only; anything else = no rotation}
 }
 \value{
 a ggplot2 object
