@@ -4,7 +4,14 @@
 \alias{ppairs}
 \title{ppairs}
 \usage{
-ppairs(D, alph = 0.5, rotate_parms = "xy")
+ppairs(
+  D,
+  alph = 0.5,
+  rotate_parms = "xy",
+  group = NULL,
+  colours = NULL,
+  legend = TRUE
+)
 }
 \arguments{
 \item{D}{data.frame or similar}
@@ -13,6 +20,17 @@ ppairs(D, alph = 0.5, rotate_parms = "xy")
 
 \item{rotate_parms}{Rotate parameter names: "xy" = both (default);
 "x" = x-axis only; "y" = y-axis only; anything else = no rotation}
+
+\item{group}{Optional name of a column in \code{D} to split/colour by
+(e.g. a factor distinguishing "prior" vs "posterior" samples). When
+\code{NULL} (default), behaviour is unchanged from the single-colour B&W plot.}
+
+\item{colours}{Optional named or unnamed vector of colours to use for the
+levels of \code{group}, passed to \code{scale_colour_manual}/\code{scale_fill_manual}.
+Ignored if \code{group} is \code{NULL}.}
+
+\item{legend}{Logical: if \code{group} is used, show a combined legend
+(default \code{TRUE})?}
 }
 \value{
 a ggplot2 object
